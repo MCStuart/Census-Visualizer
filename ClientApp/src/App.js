@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+// import { Route } from 'react-router';
+// import { Layout } from './components/Layout';
+// import { Home } from './components/Home';
+// import { FetchData } from './components/FetchData';
+// import { Counter } from './components/Counter';
 import ThreeContainer from './components/ThreeContainer';
 
 
@@ -12,9 +12,7 @@ export default class App extends Component {
 
   render () {
     return (
-
-      <ThreeContainer />
-
+        <ThreeContainer />
       // <Layout>
       //   <Route exact path='/map' component={ThreeContainer} />
       //   <Route exact path='/' component={Home} />

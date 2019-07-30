@@ -12,7 +12,10 @@
     "react-scripts": "^1.1.5",
     "reactstrap": "^6.3.0",
     "rimraf": "^2.6.2",
-    "three": "^0.106.2"
+    "three": "^0.106.2",
+    "three-gltf-loader": "^1.106.0",
+    "three-orbit-controls": "^82.1.0",
+    "three-orbitcontrols": "^2.102.2"
   },
   "devDependencies": {
     "ajv": "^6.0.0",

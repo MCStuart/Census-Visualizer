@@ -1,37 +1,64 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import * as THREE from 'three';
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import './ThreeContainer.css';
+import * as url from '../threejs/assets/MapModels/usa_map_-_low_poly/scene.glb';
 
 class ThreeContainer extends Component {
 
   componentDidMount() {
+    console.log(url);
+    
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    window.scene = scene;
+
+    const fov = 45;
+    const aspect = 2;  // the canvas default
+    const near = 0.1;
+    const far = 10000;
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    camera.position.set(0, 10, 20);
+
+    const loader = new GLTFLoader();
+    loader.load( url, ( gltf ) => {
+      console.log("loaded");
+      
+      scene.add(gltf.scene);
+      },
+      ( xhr ) => {
+        // called while loading is progressing
+        console.log( `${( xhr.loaded / xhr.total * 100 )}% loaded` );
+        console.log("loading");
+        
+      },
+      ( error ) => {
+        // called when loading has errors
+        console.error( 'An error happened', error );
+        console.log("error");
+        
+      },
+    );
 
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.25
+    controls.enableZoom = false
+    controls.update();
 
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshBasicMaterial({
-      color: 0x00ff00
-    });
-    var cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    scene.background = new THREE.Color( 'aquamarine' );
+    scene.overrideMaterial = new THREE.MeshBasicMaterial( { color: 'grey' } );
+    camera.far = 100000;
+    camera.updateProjectionMatrix();
 
-    camera.position.z = 5;
-
-    var animate = function () {
-      requestAnimationFrame(animate);
-
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-
-      renderer.render(scene, camera);
-    };
+    function animate() {
+      // requestAnimationFrame( animate );
+      renderer.render( scene, camera );
+    }
 
     animate();
   }
