@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
-import * as THREE from '../threejs/js/three';
+import React, {
+  Component
+} from 'react';
+import * as THREE from 'three';
 
 import './ThreeContainer.css';
 
-class ThreeContainer extends Component{
+class ThreeContainer extends Component {
 
-  componentDidMount(){
-    const three = THREE;
+  componentDidMount() {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    const scene = new THREE.Scene();
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-    const fov = 45;
-    const aspect = window.innerWidth / window.innerHeight;
-    // If aspect doesn't work, replace with " width / height "  
-    // const width = window.innerWidth;
-    // const height = window.innerHeight;
-    const near = 0.1;
-    const far = 1000;
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0x00ff00
+    });
+    var cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
-    const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+    camera.position.z = 5;
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidith, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
-    
-    // logic goes here
-    const update = () => {};
+    var animate = function () {
+      requestAnimationFrame(animate);
 
-    // draw scene
-    const render = () => {
-      renderer.render( scene, camera );
-    }
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
 
-    //run game loop (update, render, repeat)
-    const GameLoop = () => {
-      requestAnimationFrame( GameLoop );
-
-      update();
-      render();
+      renderer.render(scene, camera);
     };
 
-    GameLoop();
+    animate();
   }
 
   render() {
-      return(
-        <div />
-      )
+    return( 
+      <div />
+    )
   }
 }
 export default ThreeContainer
