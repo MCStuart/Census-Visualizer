@@ -21,10 +21,9 @@ class ThreeContainer extends Component {
     camera.position.set(0, 10, 20);
 
     const loader = new GLTFLoader();
-    loader.load( url, ( gltf ) => {
-      console.log("loaded");
-      
+    loader.load( url, ( gltf ) => {   
       scene.add(gltf.scene);
+      console.log("loaded");
       },
       ( xhr ) => {
         // called while loading is progressing
@@ -40,7 +39,7 @@ class ThreeContainer extends Component {
       },
     );
 
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({ alpha: false });
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
     
@@ -54,13 +53,10 @@ class ThreeContainer extends Component {
     scene.overrideMaterial = new THREE.MeshBasicMaterial( { color: 'grey' } );
     camera.far = 100000;
     camera.updateProjectionMatrix();
+    camera.position.z = 10;
 
-    function animate() {
-      // requestAnimationFrame( animate );
-      renderer.render( scene, camera );
-    }
 
-    animate();
+    renderer.render( scene, camera );
   }
 
   render() {
