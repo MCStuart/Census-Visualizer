@@ -10,8 +10,8 @@ import * as url from '../assets/MapModels/usa_map_-_low_poly/scene.glb';
 class ThreeContainer extends Component {
     componentDidMount(){
       
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      let width = window.innerWidth;
+      let height = window.innerHeight;
       //ADD SCENE
       this.scene = new THREE.Scene()
       //ADD CAMERA
@@ -35,10 +35,10 @@ class ThreeContainer extends Component {
       //LIGHTNING
       //first point light
       this.light = new THREE.PointLight(0xffffff, 1, 4000);
-      this.light.position.set(50, 0, 0);
+      this.light.position.set(5, 0, 0);
       //the second one
       this.light_two = new THREE.PointLight(0xffffff, 1, 4000);
-      this.light_two.position.set(-100, 800, 800);
+      this.light_two.position.set(-10, 8, 8);
       //And another global lightning some sort of cripple GL
       this.lightAmbient = new THREE.AmbientLight(0x404040);
       this.scene.add(this.light, this.light_two, this.lightAmbient);
@@ -51,13 +51,12 @@ class ThreeContainer extends Component {
 
 
       // ADD MODEL  
+      // These following lines took 14 hours to get to work
+      // Look upon my works ye mighty, and despair!
       var loader = new GLTFLoader();
       loader.load(url, ( gltf ) => {
         console.log(gltf);
-        
-        
         const root = gltf.scene;
-
         this.scene.add(root);
       });
 
@@ -70,27 +69,45 @@ class ThreeContainer extends Component {
       //   this.controls.panSpeed = 0.8;
       // }
       // -------------------------------------->
-  this.start()
+
+      window.addEventListener('resize', this.handleResize, false);
+
+      
+
+      this.start()
     }
+
   componentWillUnmount(){
       this.stop()
+      window.removeEventListener('resize', this.handleResize, false)
       this.mount.removeChild(this.renderer.domElement)
     }
+
   start = () => {
       if (!this.frameId) {
         this.frameId = requestAnimationFrame(this.animate)
       }
     }
+
   stop = () => {
       cancelAnimationFrame(this.frameId)
     }
+
   animate = () => {
      this.renderScene()
      this.frameId = window.requestAnimationFrame(this.animate)
    }
+
   renderScene = () => {
     this.renderer.render(this.scene, this.camera)
   }
+
+  handleResize = () => {
+    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
+  }
+
   render(){
       return(
         <div
@@ -100,4 +117,5 @@ class ThreeContainer extends Component {
       )
     }
   }
-export default ThreeContainer
+
+export default ThreeContainer;
