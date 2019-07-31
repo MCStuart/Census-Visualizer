@@ -63,6 +63,7 @@ class ThreeContainer extends Component {
       // ADD ORBIT CONTROLLS
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       // Not used or not needed? -------------->
+      
       // function initializeOrbits() {
       //   this.controls.rotateSpeed = 1.0;
       //   this.controls.zoomSpeed = 1.2;
@@ -71,8 +72,6 @@ class ThreeContainer extends Component {
       // -------------------------------------->
 
       window.addEventListener('resize', this.handleResize, false);
-
-      
 
       this.start()
     }
