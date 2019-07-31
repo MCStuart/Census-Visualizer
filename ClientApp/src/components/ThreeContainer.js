@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import './ThreeContainer.css';
-import * as url from '../assets/MapModels/usa_map_-_low_poly/scene.glb';
+import * as url from '../assets/MapModels/scene.glb';
 
 
 
@@ -63,7 +63,7 @@ class ThreeContainer extends Component {
       // ADD ORBIT CONTROLLS
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       // Not used or not needed? -------------->
-      
+
       // function initializeOrbits() {
       //   this.controls.rotateSpeed = 1.0;
       //   this.controls.zoomSpeed = 1.2;
