@@ -60,7 +60,7 @@ namespace census_map_visualizer
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");                }
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8000");                }
             });
         }
     }

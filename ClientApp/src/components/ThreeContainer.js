@@ -1,68 +1,87 @@
 import React, { Component } from 'react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import './ThreeContainer.css';
-import * as url from '../threejs/assets/MapModels/usa_map_-_low_poly/scene.glb';
+import * as url from '../assets/MapModels/usa_map_-_low_poly/scene.glb';
+
+
 
 class ThreeContainer extends Component {
-
-  componentDidMount() {
-    console.log(url);
-    
-    var scene = new THREE.Scene();
-    window.scene = scene;
-
-    const fov = 45;
-    const aspect = 2;  // the canvas default
-    const near = 0.1;
-    const far = 10000;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 10, 20);
-
-    const loader = new GLTFLoader();
-    loader.load( url, ( gltf ) => {   
-      scene.add(gltf.scene);
-      console.log("loaded");
-      },
-      ( xhr ) => {
-        // called while loading is progressing
-        console.log( `${( xhr.loaded / xhr.total * 100 )}% loaded` );
-        console.log("loading");
-        
-      },
-      ( error ) => {
-        // called when loading has errors
-        console.error( 'An error happened', error );
-        console.log("error");
-        
-      },
-    );
-
-    var renderer = new THREE.WebGLRenderer({ alpha: false });
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
-    
-    const controls = new OrbitControls(camera, renderer.domElement)
-    controls.enableDamping = true
-    controls.dampingFactor = 0.25
-    controls.enableZoom = false
-    controls.update();
-
-    scene.background = new THREE.Color( 'aquamarine' );
-    scene.overrideMaterial = new THREE.MeshBasicMaterial( { color: 'grey' } );
-    camera.far = 100000;
-    camera.updateProjectionMatrix();
-    camera.position.z = 10;
+    componentDidMount(){
+      console.log(url);
+      
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      //ADD SCENE
+      this.scene = new THREE.Scene()
+      //ADD CAMERA
+      this.camera = new THREE.PerspectiveCamera(
+        75,
+        width / height,
+        0.1,
+        1000
+      )
+      this.camera.position.z = 4
+      //ADD RENDERER
+      this.renderer = new THREE.WebGLRenderer({ antialias: true })
+      this.renderer.setClearColor('aquamarine')
+      this.renderer.setSize(width, height)
+      this.renderer.gammaOutput = true;
+      this.renderer.gammaFactor = 2.2;
+      this.mount.appendChild(this.renderer.domElement)
+      //ADD CUBE
+      // const geometry = new THREE.BoxGeometry(1, 1, 1)
+      // const material = new THREE.MeshBasicMaterial({ color: 'pink' })
+      // this.cube = new THREE.Mesh(geometry, material)
+      // this.scene.add(this.cube)
 
 
-    renderer.render( scene, camera );
+      // ADD MODEL  
+      var loader = new GLTFLoader();
+      loader.load(url, ( gltf ) => {
+        const root = gltf.scene;
+        this.scene.add(root);
+      });
+
+
+      // ADD ORBIT CONTROLLS
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      // Not used or not needed? -------------->
+      // function initializeOrbits() {
+      //   this.controls.rotateSpeed = 1.0;
+      //   this.controls.zoomSpeed = 1.2;
+      //   this.controls.panSpeed = 0.8;
+      // }
+      // -------------------------------------->
+  this.start()
+    }
+  componentWillUnmount(){
+      this.stop()
+      this.mount.removeChild(this.renderer.domElement)
+    }
+  start = () => {
+      if (!this.frameId) {
+        this.frameId = requestAnimationFrame(this.animate)
+      }
+    }
+  stop = () => {
+      cancelAnimationFrame(this.frameId)
+    }
+  animate = () => {
+     this.renderScene()
+     this.frameId = window.requestAnimationFrame(this.animate)
+   }
+  renderScene = () => {
+    this.renderer.render(this.scene, this.camera)
   }
-
-  render() {
-    return( 
-      <div />
-    )
+  render(){
+      return(
+        <div
+          style={{ width: '100%', height: '100%' }}
+          ref={(mount) => { this.mount = mount }}
+        />
+      )
+    }
   }
-}
 export default ThreeContainer
