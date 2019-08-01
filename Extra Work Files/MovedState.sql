@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS moved_states (
-    `moveState_Id` INT,
-    `moveState_StateIdTo` INT,
-    `moveState_StateIdFrom` INT,
-    `moveState_NumberMoved` INT
+CREATE TABLE IF NOT EXISTS MoveState (
+    `Id` INT,
+    `StateIdTo` INT,
+    `StateIdFrom` INT,
+    `NumberMoved` INT
 );
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,1,2,424),
     (0,1,3,1513),
     (0,1,4,517),
@@ -255,7 +255,7 @@ INSERT INTO moved_states VALUES
     (0,6,3,6765),
     (0,6,4,1356),
     (0,6,5,27014);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,6,7,1800),
     (0,6,8,764),
     (0,6,9,12385),
@@ -506,7 +506,7 @@ INSERT INTO moved_states VALUES
     (0,11,8,14),
     (0,11,9,2460),
     (0,11,10,2915);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,11,12,466),
     (0,11,13,1062),
     (0,11,14,327),
@@ -757,7 +757,7 @@ INSERT INTO moved_states VALUES
     (0,16,13,2840),
     (0,16,14,1433),
     (0,16,15,2119);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,16,17,168),
     (0,16,18,580),
     (0,16,19,24),
@@ -1008,7 +1008,7 @@ INSERT INTO moved_states VALUES
     (0,21,18,948),
     (0,21,19,4099),
     (0,21,20,2696);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,21,22,2747),
     (0,21,23,1814),
     (0,21,24,45),
@@ -1259,7 +1259,7 @@ INSERT INTO moved_states VALUES
     (0,26,23,948),
     (0,26,24,236),
     (0,26,25,90);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,26,27,103),
     (0,26,28,581),
     (0,26,29,76),
@@ -1510,7 +1510,7 @@ INSERT INTO moved_states VALUES
     (0,31,28,1008),
     (0,31,29,77),
     (0,31,30,196);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,31,32,886),
     (0,31,33,261),
     (0,31,34,215),
@@ -1761,7 +1761,7 @@ INSERT INTO moved_states VALUES
     (0,36,33,1483),
     (0,36,34,98),
     (0,36,35,1143);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,36,37,841),
     (0,36,38,611),
     (0,36,39,216),
@@ -2012,7 +2012,7 @@ INSERT INTO moved_states VALUES
     (0,41,38,34),
     (0,41,39,0),
     (0,41,40,15);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,41,42,264),
     (0,41,43,1156),
     (0,41,44,170),
@@ -2263,7 +2263,7 @@ INSERT INTO moved_states VALUES
     (0,46,43,15596),
     (0,46,44,2123),
     (0,46,45,963);
-INSERT INTO moved_states VALUES
+INSERT INTO MoveState VALUES
     (0,46,47,5488),
     (0,46,48,5294),
     (0,46,49,961),
