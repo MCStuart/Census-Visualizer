@@ -25,7 +25,7 @@ namespace StateMigration.Context
                     .Where(s => s.Name.Contains("Oregon"))
                     .ToList();
             }
-            //You can use the Include method to specify related data to be included in query results.
+            //You can use the '.Include' method to specify related data to be included in query results.
             using (var context = new StateMigrationContext())
             {
                 var movedState = context.MoveState
@@ -40,6 +40,17 @@ namespace StateMigration.Context
                     .Include(state => state.Name)
                     .ToList();
             }
+            //Include multiple levels of related data using '.ThenInclude' method. You can chain multiple '.ThenInclude' calls
+            using (var context = new StateMigrationContext())
+            {
+                var states = context.States
+                    .Include(state => state.Name)
+                        .ThenInclude(moveState => moveState.StateIdFrom)
+                    .ToList();
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            // Current versions of Visual Studio offer incorrect code completion options and can cause correctexpressions to be flagged with syntax errors when using the ThenInclude method after a collection navigation property. This is a symptom of an IntelliSense bug tracked at https://github.com/dotnet/roslyn/issues/8237
+            }
+            
         }
     }
 }
