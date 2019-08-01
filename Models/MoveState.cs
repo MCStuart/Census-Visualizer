@@ -2,27 +2,28 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using StateMigration.Context;
 using System.Linq;
 using System;  
+using StateMigration.Migrations;
 
 // From mySQL to React!
-namespace StateMigration.Models
+namespace MoveStateModel.Models
 {
     public class MoveStateAccessLayer
     {
-        myTestDBContext db = new myTestDBContext();
-
-        public IEnumerable<ExecutionStrategyExtensions> GetAllMoveStates()
-        {
-            try
-            {
-                return db.MoveState.ToList();
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        DbContext db = new DbContext();
+         public IEnumerable<MoveState> GetAllStates()  
+        {  
+            try  
+            {  
+                return db.MoveState.ToList();  
+            }  
+            catch  
+            {  
+                throw;  
+            }  
+        }  
         // Add new MoveState to record
         public int AddMoveState(MoveState moveState)
         {
@@ -54,7 +55,7 @@ namespace StateMigration.Models
         }
 
         //Get details of a particular move 
-        public MoveState GetMoveData(int id)  
+        public MoveState GetMoveState(int id)  
         {  
             try  
             {  

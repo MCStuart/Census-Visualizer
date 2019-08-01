@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;  
 using System.Threading.Tasks;  
 using Microsoft.AspNetCore.Mvc;  
-using StateMigration.Models;  
+using MoveStateModel.Models;  
+using StateMigration.Context;
+using StateMigration.Migrations;
 
 namespace StateMigration.Controllers
 {  
@@ -14,7 +16,7 @@ namespace StateMigration.Controllers
         [Route("api/MoveState/Index")]  
         public IEnumerable<MoveState> Index()  
         {  
-            return objMoveState.GetAllMoveState();  
+            return objMoveState.GetAllMoveStates();  
         }  
         [HttpPost]  
         [Route("api/MoveState/Create")]  

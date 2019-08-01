@@ -50,10 +50,10 @@ class ThreeContainer extends Component {
       this.scene.add(this.light, this.light_two, this.lightAmbient);
     
       //ADD CUBE
-      // const geometry = new THREE.BoxGeometry(1, 1, 1)
-      // const material = new THREE.MeshBasicMaterial({ color: 'pink' })
-      // this.cube = new THREE.Mesh(geometry, material)
-      // this.scene.add(this.cube)
+      const geometry = new THREE.BoxGeometry(1, 1, 1)
+      const material = new THREE.MeshBasicMaterial({ color: 'pink' })
+      this.cube = new THREE.Mesh(geometry, material)
+      this.scene.add(this.cube)
 
 
       // ADD MODEL  
@@ -78,7 +78,6 @@ class ThreeContainer extends Component {
       // -------------------------------------->
 
       window.addEventListener('resize', this.handleResize, false);
-
       this.start()
     }
 
