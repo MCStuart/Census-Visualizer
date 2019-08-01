@@ -9,7 +9,7 @@ namespace StateMigration.Context
     public class StateMigrationContext : DbContext
     {
 
-        public DbSet<State> State { get; set; }
+        public DbSet<States> States { get; set; }
         public DbSet<MoveState> MoveState { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -18,7 +18,7 @@ namespace StateMigration.Context
 		}
     }
 
-    public class State
+    public class States
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -8,7 +8,7 @@ using StateMigration.Context;
 namespace census_map_visualizer.Migrations
 {
     [DbContext(typeof(StateMigrationContext))]
-    [Migration("20190731234846_InitialCreate")]
+    [Migration("20190801054852_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

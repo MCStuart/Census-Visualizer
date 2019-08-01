@@ -1,8 +1,8 @@
-CREATE TABLE IF NOT EXISTS States (
+CREATE TABLE IF NOT EXISTS State (
     `Id` INT,
     `Name` VARCHAR(14) CHARACTER SET utf8
 );
-INSERT INTO States VALUES
+INSERT INTO State VALUES
     (0,'Alabama'),
     (0,'Alaska'),
     (0,'Arizona'),
