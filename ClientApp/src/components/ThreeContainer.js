@@ -4,10 +4,16 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import './ThreeContainer.css';
 import * as url from '../assets/MapModels/scene.glb';
-
+import { FetchData } from './FetchData';
+// import { useState } from 'react';
 
 
 class ThreeContainer extends Component {
+
+  // function SomeComponent() {
+  //   const [name, setName] = useState('Barney Stinson'); // Defines state variable (name) and call (setName) -- both of which can be named anything
+  // }
+
     componentDidMount(){
       
       let width = window.innerWidth;

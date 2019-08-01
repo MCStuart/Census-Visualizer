@@ -1,55 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import SelectedDropdown from './SelectedDropdown';
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export default function FetchData() {
+  // const [MoveStateId, setMoveStateId] = useState('');
+  // const [StateIdTo, setStateIdTo] = useState('');
+  // const [StateIdFrom, setStateIdFrom] = useState('');
+  // const [MoveState, useMoveState] = useState('');
 
-  constructor (props) {
-    super(props);
-    this.state = { forecasts: [], loading: true };
-
-    fetch('api/SampleData/WeatherForecasts')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ forecasts: data, loading: false });
-      });
-  }
-
-  static renderForecastsTable (forecasts) {
-    return (
-      <table className='table table-striped'>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.dateFormatted}>
-              <td>{forecast.dateFormatted}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
-  }
-
-  render () {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
-
-    return (
+  // handleTravelReport = (event) => {
+  //   setStateIdTo(event.target.value);
+  //   setStateIdFrom(event.target.value);
+  //   setMoveState(event.target.value);
+  // }
+  
+  // updateReport = (event) => {
+  //   event.preventDefault();
+  //   setStateIdTo(IdTo);
+  //   setStateIdFrom(IdFrom)
+  //   setMoveState(MoveState);
+  //   setStateIdTo("");
+  //   setValue("");
+  //   setMoveState("");
+  // }
+  // fetch('api/SampleData/WeatherForecasts')
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     this.setState({ forecasts: data, loading: false });
+  //   });
+  return (
+    <div>
+     <p style={{ color: 'red' }}>Hello, I bet you aren't from here! I'm not either! </p>
       <div>
-        <h1>Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-        {contents}
+        <SelectedDropdown />
+        {/* <input type="text" value={input} onChange={handleInput} />
+        <button onClick={updateName}>Save</button> */}
       </div>
-    );
-  }
+    </div>
+  );
 }
