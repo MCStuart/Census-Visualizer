@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StateMigration.Context;
 
-namespace census_map_visualizer.Migrations
+namespace StateMigration.Migrations
 {
     [DbContext(typeof(StateMigrationContext))]
     [Migration("20190801054852_InitialCreate")]

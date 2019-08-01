@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StateMigration.Context;
 
-namespace census_map_visualizer.Migrations
+namespace StateMigration.Migrations
 {
     [DbContext(typeof(StateMigrationContext))]
     partial class StateMigrationContextModelSnapshot : ModelSnapshot

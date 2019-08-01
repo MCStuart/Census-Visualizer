@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace census_map_visualizer.Migrations
+namespace StateMigration.Migrations
 {
     public partial class InitialCreate : Migration
     {

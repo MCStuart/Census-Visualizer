@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StateMigration.Context
 {
-    public class PopulationChange
+    public class StateMigration
     {
         public static void Run()
         {
@@ -45,7 +45,7 @@ namespace StateMigration.Context
             {
                 var states = context.States
                     .Include(state => state.Name)
-                        .ThenInclude(moveState => moveState.StateIdFrom)
+                        // .ThenInclude(moveState => moveState.StateIdFrom)
                     .ToList();
             //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             // Current versions of Visual Studio offer incorrect code completion options and can cause correctexpressions to be flagged with syntax errors when using the ThenInclude method after a collection navigation property. This is a symptom of an IntelliSense bug tracked at https://github.com/dotnet/roslyn/issues/8237
